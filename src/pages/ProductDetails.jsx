@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
 import { CartContext } from '../context/CartContext'
@@ -10,11 +10,21 @@ export default function ProductDetails() {
   const { addToCart } = useContext(CartContext)
   const product = products.find((item) => String(item.id) === String(id))
 
+  // Hide the global footer while the Product Details page is active
+  useEffect(() => {
+    const footer = document.querySelector('footer')
+    if (footer) footer.style.display = 'none'
+    return () => { if (footer) footer.style.display = '' }
+  }, [])
+
   if (!product) {
     return (
       <div className="page">
-        <h1>Product not found</h1>
-        <Link to="/products" className="btn-primary mt-4 inline-flex">
+        <div className="grid gap-3">
+          <p className="section-kicker">Catalog</p>
+          <h1 className="section-title">Product not found</h1>
+        </div>
+        <Link to="/products" className="btn-primary w-fit">
           Back to Shop
         </Link>
       </div>
@@ -26,41 +36,44 @@ export default function ProductDetails() {
     .slice(0, 3)
 
   return (
-    <div className="page">
-      <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(22rem,0.92fr)]">
+    <div className="page space-y-24">
+      <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(22rem,0.92fr)]">
         <div className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
           <img
             src={product.images?.[0] || product.image}
             alt={product.name}
             className="aspect-[4/3] w-full object-cover"
           />
-          <div className="grid grid-cols-3 gap-3 p-3">
+          <div className="grid grid-cols-3 gap-4 p-5">
             {(product.images || []).map((img) => (
               <img
                 key={img}
                 src={img}
                 alt=""
-                className="aspect-[4/3] w-full rounded-md border border-slate-200 object-cover"
+                className="aspect-[4/3] w-full rounded-lg border border-slate-200 object-cover"
               />
             ))}
           </div>
         </div>
 
-        <section className="flex h-full flex-col justify-center">
-          <p className="section-kicker">{product.category}</p>
-          <h1 className="mt-2 text-3xl font-bold text-slate-950">{product.name}</h1>
-          <p className="mt-4 text-slate-600">{product.description}</p>
-          <div className="mt-5 text-3xl font-extrabold text-emerald-700">
+        <section className="flex h-full flex-col gap-8 justify-center lg:pl-6">
+          <div className="grid gap-4">
+            <p className="section-kicker">{product.category}</p>
+            <h1 className="text-3xl font-extrabold text-slate-950 md:text-4xl">{product.name}</h1>
+            <p className="max-w-2xl text-lg text-slate-600 leading-relaxed">{product.description}</p>
+          </div>
+
+          <div className="text-3xl font-extrabold text-emerald-700">
             {formatPrice(product.price)}
           </div>
 
-          <div className="mt-8 rounded-lg border border-slate-200 bg-white p-5">
+          <div className="surface-card grid gap-5 p-6">
             <h2 className="text-base font-semibold text-slate-950">
               Technical Specifications
             </h2>
-            <dl className="mt-4 grid gap-3 text-sm text-slate-700">
+            <dl className="grid gap-4 text-sm text-slate-700">
               {Object.entries(product.specs || {}).map(([key, value]) => (
-                <div key={key} className="summary-line border-b border-slate-100 pb-2">
+                <div key={key} className="summary-line border-b border-slate-100 pb-4 last:border-0 last:pb-0">
                   <dt className="font-medium capitalize text-slate-500">{key}</dt>
                   <dd className="text-right">{value}</dd>
                 </div>
@@ -68,23 +81,23 @@ export default function ProductDetails() {
             </dl>
           </div>
 
-          <button onClick={() => addToCart(product)} className="btn-primary mt-6 w-full sm:w-auto">
+          <button onClick={() => addToCart(product)} className="btn-primary w-full py-4 text-lg sm:w-auto px-10">
             Add to Cart
           </button>
         </section>
       </div>
 
       {product.reviews?.length > 0 && (
-        <section className="mt-12">
+        <section className="grid gap-4">
           <h2 className="section-title">Reviews</h2>
-          <div className="mt-4 grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-3">
             {product.reviews.map((review) => (
-              <div key={review.user} className="surface-card p-4">
+              <div key={review.user} className="surface-card grid gap-3 p-6">
                 <div className="font-semibold text-slate-900">{review.user}</div>
-                <div className="mt-1 text-sm text-amber-500">
+                <div className="text-sm text-amber-500 leading-6">
                   {'*'.repeat(review.rating)}
                 </div>
-                <p className="mt-2 text-sm text-slate-600">{review.text}</p>
+                <p className="text-sm leading-7 text-slate-600">{review.text}</p>
               </div>
             ))}
           </div>
@@ -92,9 +105,9 @@ export default function ProductDetails() {
       )}
 
       {related.length > 0 && (
-        <section className="mt-12">
+        <section className="grid gap-4">
           <h2 className="section-title">Related Products</h2>
-          <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((item) => (
               <ProductCard key={item.id} product={item} />
             ))}

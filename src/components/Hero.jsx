@@ -10,7 +10,7 @@ export default function Hero() {
     >
       <div className="app-container hero-grid">
         <div className="space-y-7">
-          <span className="store-badge">CAAD Tech Store - Ibadan</span>
+          <span className="store-badge">CAAD Tech Store - Lagos</span>
 
           <div className="space-y-5">
             <h1 className="hero-title">

@@ -7,10 +7,19 @@
     color: #0f172a;
     background: #f8fafc;
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.65;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   * {
     box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
@@ -21,9 +30,10 @@
       radial-gradient(circle at 12% 8%, rgba(16, 185, 129, 0.08), transparent 22rem),
       radial-gradient(circle at 88% 18%, rgba(14, 165, 233, 0.06), transparent 24rem),
       linear-gradient(180deg, #f8fafc 0%, #eef2f7 58%, #f8fafc 100%);
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  }
+
+  main {
+    display: block;
   }
 
   a {
@@ -33,7 +43,8 @@
 
   button,
   input,
-  select {
+  select,
+  textarea {
     font: inherit;
   }
 
@@ -47,7 +58,10 @@
   .page {
     width: min(100% - 1.25rem, 80rem);
     margin-inline: auto;
-    padding-block: 6.75rem 3rem;
+    padding-block: 6.75rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 4vw, 3.5rem);
   }
 
   .surface-card,
@@ -57,6 +71,10 @@
     border-radius: 1rem;
     background: rgba(255, 255, 255, 0.97);
     box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+  }
+
+  .surface-card {
+    padding: clamp(1.1rem, 1.8vw, 1.6rem);
   }
 
   .product-card {
@@ -74,36 +92,36 @@
   }
 
   .auth-card {
-    width: min(100%, 28rem);
-    padding: 1.5rem;
+    width: min(100%, 30rem);
+    padding: clamp(1.5rem, 3vw, 2rem);
   }
 
   .section-title {
     color: #020617;
     font-size: clamp(1.9rem, 3vw, 2.75rem);
     font-weight: 800;
-    line-height: 1.06;
+    line-height: 1.08;
     letter-spacing: -0.03em;
   }
 
   .section-copy {
     color: #64748b;
     max-width: 42rem;
-    line-height: 1.7;
+    line-height: 1.75;
   }
 
   .section-kicker {
     color: #047857;
     font-size: 0.75rem;
     font-weight: 800;
-    letter-spacing: 0;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
   }
 
   .nav-link {
     border-radius: 999px;
     color: rgb(203 213 225);
-    padding: 0.6rem 0.8rem;
+    padding: 0.7rem 1rem;
     transition: color 160ms ease, background 160ms ease;
     white-space: nowrap;
   }
@@ -122,14 +140,14 @@
   .icon-button,
   .qty-button {
     align-items: center;
-    border-radius: 0.75rem;
+    border-radius: 0.8rem;
     display: inline-flex;
     font-weight: 700;
     justify-content: center;
     line-height: 1;
-    min-height: 2.85rem;
-    min-width: 2.85rem;
-    padding: 0.78rem 1.1rem;
+    min-height: 3rem;
+    min-width: 3rem;
+    padding: 0.85rem 1.15rem;
     text-align: center;
     transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, border-color 160ms ease;
     white-space: nowrap;
@@ -155,11 +173,13 @@
   .btn-secondary {
     border: 1px solid rgb(148 163 184 / 0.35);
     color: #e2e8f0;
+    background: rgb(255 255 255 / 0.03);
   }
 
   .btn-outline {
     border: 1px solid rgb(148 163 184 / 0.45);
     color: #0f172a;
+    background: rgb(255 255 255 / 0.85);
   }
 
   .btn-outline:hover {
@@ -183,12 +203,13 @@
   .icon-button {
     border: 1px solid rgb(148 163 184 / 0.35);
     color: #e2e8f0;
-    min-width: 4rem;
+    min-width: 4.3rem;
+    padding-inline: 1rem;
   }
 
   .professional-panel {
     border: 1px solid rgb(255 255 255 / 0.14);
-    border-radius: 0.75rem;
+    border-radius: 0.85rem;
     background:
       linear-gradient(180deg, rgb(255 255 255 / 0.10), rgb(255 255 255 / 0.04)),
       rgb(15 23 42 / 0.55);
@@ -220,7 +241,7 @@
   .hero-grid {
     align-items: center;
     display: grid;
-    gap: 2.5rem;
+    gap: 3rem;
     grid-template-columns: minmax(0, 1.02fr) minmax(22rem, 0.98fr);
     min-height: 46rem;
     padding-block: 8rem 4rem;
@@ -237,7 +258,7 @@
   .hero-copy {
     color: #cbd5e1;
     font-size: clamp(1rem, 1.35vw, 1.15rem);
-    line-height: 1.7;
+    line-height: 1.8;
     max-width: 42rem;
   }
 
@@ -251,7 +272,7 @@
     border-radius: 1rem;
     background: rgb(255 255 255 / 0.08);
     box-shadow: 0 32px 80px rgb(0 0 0 / 0.36);
-    padding: 0.75rem;
+    padding: 0.85rem;
     transform: perspective(1200px) rotateY(-5deg) rotateX(2deg);
   }
 
@@ -267,12 +288,12 @@
     background: rgb(15 23 42 / 0.76);
     backdrop-filter: blur(18px);
     box-shadow: 0 20px 60px rgb(0 0 0 / 0.32);
-    padding: 1rem;
+    padding: 1.1rem;
   }
 
   .hero-stat-grid {
     display: grid;
-    gap: 0.75rem;
+    gap: 1rem;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     max-width: 38rem;
   }
@@ -281,7 +302,7 @@
     border: 1px solid rgb(255 255 255 / 0.12);
     border-radius: 0.85rem;
     background: rgb(255 255 255 / 0.06);
-    padding: 1rem;
+    padding: 1rem 1.1rem;
   }
 
   .hero-stat strong {
@@ -293,8 +314,8 @@
   .hero-stat span {
     color: #cbd5e1;
     display: block;
-    font-size: 0.75rem;
-    line-height: 1.4;
+    font-size: 0.8rem;
+    line-height: 1.5;
     margin-top: 0.45rem;
   }
 
@@ -327,7 +348,7 @@
     font-size: 0.75rem;
     font-weight: 800;
     gap: 0.5rem;
-    padding: 0.45rem 0.75rem;
+    padding: 0.5rem 0.8rem;
   }
 
   .store-badge::before {
@@ -343,16 +364,16 @@
   .section-header {
     align-items: center;
     display: grid;
-    gap: 1rem;
+    gap: 1.25rem;
     grid-template-columns: minmax(0, 1fr) auto;
   }
 
   .category-card {
     align-content: start;
     display: grid;
-    gap: 0.6rem;
-    min-height: 9.25rem;
-    padding: 1.05rem;
+    gap: 0.75rem;
+    min-height: 9.75rem;
+    padding: 1.15rem;
     transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
   }
 
@@ -386,13 +407,13 @@
   }
 
   .shop-hero {
-    border-radius: 0.75rem;
+    border-radius: 0.9rem;
     background:
       linear-gradient(135deg, rgb(15 23 42 / 0.96), rgb(4 120 87 / 0.9)),
       #0f172a;
     color: white;
     overflow: hidden;
-    padding: 2rem;
+    padding: 2.25rem;
     position: relative;
   }
 
@@ -409,7 +430,7 @@
 
   .professional-list {
     display: grid;
-    gap: 0.75rem;
+    gap: 0.85rem;
   }
 
   .professional-list li {
@@ -429,7 +450,7 @@
 
   .qty-button {
     border: 1px solid rgb(203 213 225);
-    min-width: 2.5rem;
+    min-width: 2.75rem;
     padding-inline: 0;
   }
 
@@ -445,11 +466,12 @@
   .field-input {
     width: 100%;
     border: 1px solid rgb(203 213 225);
-    border-radius: 0.5rem;
+    border-radius: 0.65rem;
     background: white;
     color: #0f172a;
     outline: none;
-    padding: 0.75rem 0.9rem;
+    padding: 0.85rem 1rem;
+    line-height: 1.5;
     transition: border-color 160ms ease, box-shadow 160ms ease;
   }
 
@@ -467,7 +489,7 @@
     align-items: center;
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 1.25rem;
   }
 
   .card-body-fill {
@@ -484,9 +506,9 @@
   .product-card-actions {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: 0.65rem;
+    gap: 0.75rem;
     margin-top: auto;
-    padding-top: 1.25rem;
+    padding-top: 1.4rem;
   }
 
   .cart-row {
@@ -511,8 +533,9 @@
 
   @media (max-width: 767px) {
     .page {
-      width: min(100% - 1rem, 80rem);
-      padding-block: 6.25rem 2.5rem;
+      width: min(100% - 0.9rem, 80rem);
+      padding-block: 6.25rem 2.75rem;
+      gap: 1.75rem;
     }
 
     .page-heading {
@@ -521,7 +544,7 @@
     }
 
     .cart-row {
-      grid-template-columns: 5rem minmax(0, 1fr);
+      grid-template-columns: 4.75rem minmax(0, 1fr);
     }
 
     .cart-row-actions,
@@ -541,7 +564,7 @@
     .hero-grid {
       grid-template-columns: 1fr;
       min-height: auto;
-      padding-block: 7rem 3rem;
+      padding-block: 6.75rem 3rem;
     }
 
     .hero-stat-grid {
@@ -550,6 +573,10 @@
 
     .device-frame {
       transform: none;
+    }
+
+    .shop-hero {
+      padding: 1.5rem;
     }
   }
 }

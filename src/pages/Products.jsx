@@ -43,11 +43,11 @@ export default function Products() {
   return (
     <div className="page">
       <section className="shop-hero">
-        <div className="relative z-10 grid gap-6 md:grid-cols-[minmax(0,1fr)_18rem] md:items-end">
-          <div>
+        <div className="relative z-10 grid gap-8 md:grid-cols-[minmax(0,1fr)_18rem] md:items-end">
+          <div className="grid gap-3">
             <p className="section-kicker text-emerald-200">Shop CAAD</p>
-            <h1 className="mt-2 text-3xl font-extrabold md:text-5xl">Products</h1>
-            <p className="mt-3 max-w-2xl text-slate-200">
+            <h1 className="text-3xl font-extrabold md:text-5xl">Products</h1>
+            <p className="max-w-2xl text-slate-200 leading-7">
               Browse selected laptops, accessories, and tech essentials backed by local support and practical buying guidance.
             </p>
           </div>
@@ -59,23 +59,21 @@ export default function Products() {
         </div>
       </section>
 
-      <div className="mt-6">
-        <Filters
-          categories={categories}
-          selectedCategory={category}
-          onSelectCategory={(nextCategory) => {
-            setCategory(nextCategory)
-            setPage(1)
-          }}
-          search={search}
-          onSearch={(nextSearch) => {
-            setSearch(nextSearch)
-            setPage(1)
-          }}
-          sort={sort}
-          onSort={(nextSort) => setSort(nextSort)}
-        />
-      </div>
+      <Filters
+        categories={categories}
+        selectedCategory={category}
+        onSelectCategory={(nextCategory) => {
+          setCategory(nextCategory)
+          setPage(1)
+        }}
+        search={search}
+        onSearch={(nextSearch) => {
+          setSearch(nextSearch)
+          setPage(1)
+        }}
+        sort={sort}
+        onSort={(nextSort) => setSort(nextSort)}
+      />
 
       <ProductGrid products={paged} />
 

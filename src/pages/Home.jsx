@@ -7,9 +7,9 @@ import Testimonials from '../components/Testimonials'
 
 export default function Home() {
   return (
-    <div>
+    <div className="grid gap-48">
       <Hero />
-      <div className="mx-auto max-w-7xl px-4">
+      <div className="app-container grid gap-48 px-6 pb-48">
         <FeaturedProducts />
         <Categories />
         <ServiceHighlights />
