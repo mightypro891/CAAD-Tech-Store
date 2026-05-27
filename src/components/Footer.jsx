@@ -50,7 +50,7 @@ function Footer() {
             <ul className="space-y-4 text-sm font-medium">
               <li><Link to="/" className="transition-colors hover:text-emerald-400">Home</Link></li>
               <li><Link to="/products" className="transition-colors hover:text-emerald-400">Shop / Products</Link></li>
-              <li><Link to="#" className="transition-colors hover:text-emerald-400">Categories</Link></li>
+              <li><Link to="/products" className="transition-colors hover:text-emerald-400">Categories</Link></li>
               <li><Link to="/about" className="transition-colors hover:text-emerald-400">About Us</Link></li>
               <li><Link to="/contact" className="transition-colors hover:text-emerald-400">Contact</Link></li>
               <li><Link to="#" className="transition-colors hover:text-emerald-400">FAQ</Link></li>
@@ -61,12 +61,12 @@ function Footer() {
           <div className="space-y-8">
             <h2 className="text-[10px] font-black uppercase tracking-[0.3em] text-white">Categories</h2>
             <ul className="space-y-4 text-sm font-medium">
-              <li><Link to="#" className="transition-colors hover:text-emerald-400">Laptops</Link></li>
-              <li><Link to="#" className="transition-colors hover:text-emerald-400">Gaming PCs</Link></li>
-              <li><Link to="#" className="transition-colors hover:text-emerald-400">Accessories</Link></li>
-              <li><Link to="#" className="transition-colors hover:text-emerald-400">Keyboards & Mice</Link></li>
-              <li><Link to="#" className="transition-colors hover:text-emerald-400">Monitors</Link></li>
-              <li><Link to="#" className="transition-colors hover:text-emerald-400">Networking Devices</Link></li>
+              <li><Link to="/products" className="transition-colors hover:text-emerald-400">Laptops</Link></li>
+              <li><Link to="/products" className="transition-colors hover:text-emerald-400">Gaming PCs</Link></li>
+              <li><Link to="/products" className="transition-colors hover:text-emerald-400">Accessories</Link></li>
+              <li><Link to="/products" className="transition-colors hover:text-emerald-400">Keyboards & Mice</Link></li>
+              <li><Link to="/products" className="transition-colors hover:text-emerald-400">Monitors</Link></li>
+              <li><Link to="/products" className="transition-colors hover:text-emerald-400">Networking Devices</Link></li>
             </ul>
           </div>
 
